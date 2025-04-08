@@ -1,0 +1,7 @@
+*.exe
+*.dll
+*.lib
+*.json
+*.csv
+*.txt
+/vscode
