@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digit-classifier
+  labels:
+    app: digit-classifier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: digit-classifier
+  template:
+    metadata:
+      labels:
+        app: digit-classifier
+    spec:
+      containers:
+      - name: digit-classifier
+        image: digit-classifier:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: model-volume
+          mountPath: /app/models
+      volumes:
+      - name: model-volume
+        configMap:
+          name: model-config
